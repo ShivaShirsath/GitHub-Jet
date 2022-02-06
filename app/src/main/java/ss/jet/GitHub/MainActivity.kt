@@ -27,47 +27,29 @@ class MainActivity : ComponentActivity() {
         setContent {
             GitHubTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    VisitMyProfile()
+                    GitJet("https://github.com/ShivaShirsathShivaShirsath")
                 }
             }
         }
     }
 }
 
+@SuppressLint("SetJavaScriptEnabled") 
 @Composable
-fun VisitMyProfile() {  
-    Column(
-    	modifier = Modifier.fillMaxSize(),
-    	verticalArrangement = Arrangement.Center,
-    	horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-    	val context = LocalContext.current
-    	Button(
-    		enabled = true,
-    		onClick = {
-    			context.startActivity(
-    				Intent(
-    					Intent.ACTION_VIEW,
-    					Uri.parse(
-    						"https://github.com/ShivaShirsath"
-    					)
-    				)
-    			)
-    		},
-    	) {
-    		Text(
-    			text = "Shiva is Here 🤘\nYou Must Remember, Who am I. 😁",
-    			textAlign = TextAlign.Center,
-    		)
-    	}
-    }
+fun WebJet(url: String) {
+	AndroidView(
+		factory = {
+			WebView(it).apply {
+				layoutParams = ViewGroup.LayoutParams(
+					ViewGroup.LayoutParams.MATCH_PARENT,
+					ViewGroup.LayoutParams.MATCH_PARENT
+				)
+				webViewClient = WebViewClient()
+				loadUrl(url)
+			}
+		},
+		update = {
+			it.loadUrl(url)
+		}
+	) 
 }
-/*
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DefaultPreview() {
-    GitHubTheme {
-        VisitMyProfile()
-    }
-}
-*/
