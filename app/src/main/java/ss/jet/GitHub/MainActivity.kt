@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @SuppressLint("SetJavaScriptEnabled") 
 @Composable
 fun WebJet(url: String) {
