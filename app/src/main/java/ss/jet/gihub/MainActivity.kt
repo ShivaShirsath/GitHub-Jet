@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Scaffold() {
-                WebJet("https://github.com/ShivaShirsathShivaShirsath")
+                WebJet("https://github.com/ShivaShirsath")
             }
         }
     }
